@@ -71,6 +71,7 @@ const deletePost = async function(id){
     await getPostShow()
 }
 
+// Delete Post Action
 todoListUL.addEventListener('click', function(e){
     e.preventDefault()
     const targetSel = e.target.classList.contains('delete-btn')
@@ -78,6 +79,34 @@ todoListUL.addEventListener('click', function(e){
     if(targetSel){
         deletePost(id)
     }
+})
+
+// Post Update target select & input value set
+todoListUL.addEventListener('click', async function(e){
+    e.preventDefault()
+    const targeUpdate = e.target.classList.contains('get-update')
+    const id = e.target.closest(".list").dataset.id
+    const res = await axios.get(`${apiEndPoint}/${id}`)
+    const post = res.data
+    if(targeUpdate) {
+        document.querySelector(".form-control").value = post.text,
+        document.querySelector(".update-submit-btn").value= post.id
+    }
+})
+// Post update / Put 
+const postUpdate = async function(updatePost, id){
+    await axios.put(`${apiEndPoint}/${id}`, updatePost)
+    await getPostShow()
+}
+
+// Update button action
+document.querySelector(".update-submit-btn").addEventListener('click', (e)=>{
+    e.preventDefault()
+    const id = e.target.value
+    const updatePost = {
+        text: document.querySelector(".form-control").value
+    }
+    postUpdate(updatePost, id)
 })
 
 
