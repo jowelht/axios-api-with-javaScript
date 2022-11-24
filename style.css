@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 100px;
+}
+.single-box {
+    margin-bottom: 15px;
+}
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.list {
+    font-weight: 600;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.filid-message {
+    color: red;
+}

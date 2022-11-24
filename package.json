@@ -1,0 +1,17 @@
+{
+  "name": "axios-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "json-server --watch ./data/db.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.0",
+    "cors": "^2.8.5",
+    "json-server": "^0.17.1"
+  }
+}
