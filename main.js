@@ -1,5 +1,4 @@
 
-
 const apiEndPoint = "http://localhost:3000/user";
 const todoListUL = document.querySelector(".todo-list-wrap ul")
 const todoListWrap = document.querySelector(".todo-list-wrap")
@@ -48,7 +47,6 @@ const getPost = async function (newPost){
         await axios.post(apiEndPoint, newPost,
             {headers: { 'Content-Type': 'application/json;charset=UTF-8', "Access-Control-Allow-Origin": "*", "Accept": "application/json" }}
         );
-        if(input.value === '') return false
         getPostShow()
     } catch(err){
         errMassge(err, todoListUL)
@@ -58,6 +56,7 @@ const getPost = async function (newPost){
 // New post action
 submitBtn.addEventListener('click', async function(e){
     e.preventDefault()
+    if(input.value === '') return false
     const post = {
         text: input.value 
     }
@@ -65,5 +64,20 @@ submitBtn.addEventListener('click', async function(e){
     input.value = ""
 })
 
+
+// Post delete
+const deletePost = async function(id){
+    await axios.delete(`${apiEndPoint}/${id}`)
+    await getPostShow()
+}
+
+todoListUL.addEventListener('click', function(e){
+    e.preventDefault()
+    const targetSel = e.target.classList.contains('delete-btn')
+    const id = e.target.closest('.list').dataset.id
+    if(targetSel){
+        deletePost(id)
+    }
+})
 
 
